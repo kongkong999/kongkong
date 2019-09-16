@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buba.bgs.dao.AttachmentMapper1" >
+  	<insert id="addList" parameterType="com.buba.bgs.bean.Attachment">
+  		insert into attachment(item_id,fileextensions,url,size,date,shootingtime)
+  		values
+  		<foreach collection="attachment" item="att" open="("
+  		close=")" separator="),(" >
+		#{att.itemId},#{att.fileextensions},#{att.url},#{att.size},now(),null
+		</foreach>
+  	</insert>
+</mapper>

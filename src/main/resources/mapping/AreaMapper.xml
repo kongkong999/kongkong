@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buba.bgs.dao.AreaMapper" >
+
+    <select id="getQuyu1" resultType="com.buba.bgs.bean.Dept">
+        SELECT d.id,d.dept_name AS `name`,d.area_id AS pId FROM sys_dept d WHERE d.area_id=#{areaId}
+    </select>
+
+    <select id="getQuyu" resultType="com.buba.bgs.bean.Area">
+
+    select a.id,a.area_name as `name`,a.parent_id as pId,a.isParent as isParent from sys_area a
+    </select>
+    <update id="updaArea">
+        update sys_area set area_name=#{name} where id=#{id}
+    </update>
+    <update id="updaDept">
+        update sys_dept set dept_name=#{name} where id=#{id}
+    </update>
+    <insert id="addArea" parameterType="com.buba.bgs.bean.Area">
+        insert into sys_area (area_name,area_code,parent_id,type,isParent) values (#{areaName},#{areaCode},#{pId},#{type1},#{idParent})
+    </insert>
+    <insert id="addDept" parameterType="com.buba.bgs.bean.Dept">
+        insert into sys_dept(dept_name,dept_code,area_id,type,isParent) values (#{deptName},#{deptCode},#{areaId},#{type},#{isParent})
+    </insert>
+
+    <delete id="delDept">
+        delete from sys_dept where id=#{id}
+    </delete>
+</mapper>

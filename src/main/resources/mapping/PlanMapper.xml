@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buba.bgs.dao.PlanMapper">
+    <!-- User denglu(String username, String userpwd); -->
+    <select id="allplan" resultType="com.buba.bgs.bean.Plan">
+		select * from plan where available=0
+	</select>
+    <insert id="addPlan" parameterType="com.buba.bgs.bean.Plan">
+        insert into plan(num_activities,dept_id,dept_name,area_code,area_id,available,type,start_time,end_time,timestamp)
+                        value(#{numActivities},#{deptId},#{deptName},#{areaCode},#{areaId},0,'xian',#{startTime},#{endTime},now())
+    </insert>
+    <select id="findoneplan" resultType="com.buba.bgs.bean.Plan">
+        select * from plan where id=#{id}
+    </select>
+    <update id="updaplan">
+        update plan set available=1 where id=#{id}
+    </update>
+</mapper>

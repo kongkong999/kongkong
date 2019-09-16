@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buba.bgs.dao.ItemsMapper">
+    <select id="finditems" resultType="com.buba.bgs.bean.Items">
+        SELECT * FROM plan p,items i
+		WHERE p.`id`= i.`plan_id` AND p.type='xian'
+        AND i.`createtime` BETWEEN #{begin} and #{end}
+    </select>
+    <insert id="addItems" parameterType="com.buba.bgs.bean.Items" useGeneratedKeys="true" keyProperty="id">
+        insert into items(num_actual,new_client,old_client,yx_client,money,available,createtime,auto_timestamp,dept_id,area_id,area_code,user_id,user_code,plan_id)
+                    values(#{numActual},#{newClient},#{oldClient},#{yxClient},#{money},1,#{createtime},now(),#{deptId},#{areaId},#{areaCode},#{userId},#{userCode},#{planId})
+
+    </insert>
+</mapper>
